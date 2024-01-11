@@ -1,0 +1,29 @@
+base_image:
+  image: baseten/trtllm-server:r23.12_baseten_v0.7.0
+  python_executable_path: /usr/bin/python3
+description: Tesst
+environment_variables: {}
+external_package_dirs: []
+model_metadata:
+  engine_repository: baseten/phi-2-f16-in1024-out1024
+  example_model_input: {}
+  tags:
+  - text-generation
+  tensor_parallelism: 1
+  tokenizer_repository: microsoft/phi-2
+model_name: phi-2-trt-llm
+python_version: py311
+requirements:
+  - tritonclient[all]
+  - transformers
+resources:
+  accelerator: A100
+  cpu: '1'
+  memory: 2Gi
+  use_gpu: true
+runtime:
+  predict_concurrency: 256
+secrets: {}
+system_packages:
+  - python3.10-venv
+
