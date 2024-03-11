@@ -1,0 +1,53 @@
+apply_library_patches: true
+base_image:
+  image: docker.io/baseten/trtllm-server:r23.12_baseten_v0.9.0.dev2024022000
+  python_executable_path: /usr/bin/python3
+build:
+  arguments:
+    engine_repository: baseten/solar10.7
+    tokenizer_repository: upstage/SOLAR-10.7B-Instruct-v1.0
+  model_server: TRT_LLM
+bundled_packages_dir: packages
+data_dir: data
+description: Generate text from a prompt with this seven billion parameter language
+  model.
+environment_variables: {}
+examples_filename: examples.yaml
+external_data: null
+external_package_dirs: []
+input_type: Any
+live_reload: false
+model_cache: []
+model_class_filename: model.py
+model_class_name: Model
+model_framework: custom
+model_metadata: {}
+model_module_dir: model
+model_name: Solar 10.7B
+model_type: Model
+python_version: py311
+requirements:
+- tritonclient[all]
+- hf_transfer
+requirements_file: null
+resources:
+  accelerator: H100
+  cpu: '1'
+  memory: 2Gi
+  use_gpu: true
+runtime:
+  num_workers: 1
+  predict_concurrency: 256
+secrets: {}
+spec_version: '2.0'
+system_packages: []
+train:
+  resources:
+    accelerator: null
+    cpu: '1'
+    memory: 2Gi
+    use_gpu: false
+  training_class_filename: train.py
+  training_class_name: Train
+  training_module_dir: train
+  variables: {}

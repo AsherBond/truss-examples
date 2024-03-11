@@ -1,0 +1,23 @@
+description: Generate text from a prompt with this seven billion parameter language model.
+model_name: Mythomax 13b
+python_version: py311
+build:
+  model_server: TRT_LLM
+  arguments:
+      tokenizer_repository: "Gryphe/MythoMax-L2-13b"
+      arguments:
+          max_input_len: 2000
+          max_output_len: 2000
+          max_batch_size: 96
+      tensor_parallel_count: 1
+      pipeline_parallel_count: 1
+environment:
+  HF_HUB_ENABLE_HF_TRANSFER: true
+requirements:
+- tritonclient[all]
+- hf_transfer
+resources:
+  accelerator: H100
+  use_gpu: true
+runtime:
+  predict_concurrency: 256
