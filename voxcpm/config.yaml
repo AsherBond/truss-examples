@@ -16,7 +16,7 @@ resources:
   use_gpu: true
 build_commands:
   - git clone https://github.com/vllm-project/vllm-omni.git /app/data/vllm-omni
-  - cd /app/data/vllm-omni && pip install -e .
+  - cd /app/data/vllm-omni && git checkout dd0fa02547aae9f57e1cb1c80b7db50a4161b8d2 && pip install -e .
 docker_server:
   start_command: bash -c "cd /app/data/vllm-omni && vllm serve /models/VoxCPM2 --omni --trust-remote-code --host 0.0.0.0 --port 8091 --served-model-name voxcpm2"
   server_port: 8091
